@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Silent installer option -mode=silent -silent_xml=/u01/sw/scripts/obiee/weblogic_silent_install.xml -->
+<!-- Taken from http://docs.oracle.com/cd/E28280_01/doc.1111/e14142/silent.htm
+     and prepared by Gregory Artinoff -->
+<!-- Specify values for each data-value name as follows: 
+ 
+     BEAHOME            The full path for the Middleware home directory of your
+                        choice. For example:
+                        /u01/app/obia11g/product/11.1.1/mwhome_1
+ 
+     WLS_INSTALL_DIR    The full path for the directory where you want to install
+                        WebLogic Server. For example:
+                        /u01/app/obia11g/product/11.1.1/mwhome_1/wlserver_10.3
+                        
+     OCP_INSTALL_DIR    The full path for the directory where you want to install
+                        Coherence.  For example:
+                        /u01/app/obia11g/product/11.1.1/mwhome_1/coherence_3.7
+ 
+     COMPONENT_PATHS    Specify the components and subcomponents you want to install
+                        on your system.  To install WebLogic Server components, use
+                        the following values:
+                        WebLogic Server/Core Application Server
+                        |WebLogic Server/Administration Console
+                        |WebLogic Server/Configuration Wizard and Upgrade Framework
+                        |WebLogic Server/Web 2.0 HTTP Pub-Sub Server
+                        |WebLogic Server/WebLogic SCA
+                        |WebLogic Server/WebLogic JDBC Drivers
+                        |WebLogic Server/Third Party JDBC Drivers
+                        |WebLogic Server/WebLogic Server Clients
+                        |WebLogic Server/WebLogic Web Server Plugins
+                        |WebLogic Server/UDDI and Xquery Support
+                        |WebLogic Server/Server Examples
+                        |WebLogic Server/Evaluation Database
+
+                        To install Coherence components, use the following syntax:
+                        Oracle Coherence/Coherence Product Files
+                        |Oracle Coherence/Coherence Examples
+
+                        When you specify a product component to be installed, all
+                        subcomponents that are installed by default in a complete
+                        installation are also installed. For example, the following
+                        entry installs all WebLogic Server components:
+                        <data-value name="COMPONENT_PATHS" value="WebLogic Server" />
+
+                        To install multiple components, separate the components with
+                        a bar (|). Do not leave a space before or after the bar.
+                        For example, to install the WebLogic Server component (and all
+                        of its subcomponents) and Coherence, enter:
+                        <data-value name="COMPONENT_PATHS" value="WebLogic Server|Oracle Coherence" />
+
+                        To specify subcomponents, you must specify a component/subcomponent
+                        combination for each entry.  For example, to install specific components
+                        of WebLogic Server and also install only the Oracle Coherence product
+                        files (but not the Coherence samples), enter the following line in the file:
+                        <data-value name="COMPONENT_PATHS" value="WebLogic Server/Core Application Server|WebLogic Server/Administration Console|Oracle Coherence|Oracle Coherence Product Files"/>
+
+                        If you do not include the COMPONENT_PATHS data-value name in silent.xml,
+                        the complete WebLogic Server and Coherence products are installed.
+      
+     NODEMGR_PORT       The Node Manager listen port.  If you do not specify a port
+                        number, the installer uses the default port 5556.  If the port
+                        number is in use, the installer scans for the next available
+                        port and assigns it to Node Manager.       
+
+     LOCAL_JVMS         This is an optional element with which you can specify the local
+                        JDKs to be installed. Enter the full path of the JDKs to be
+                        installed, separated by the pipe symbol ('|').
+-->
+<bea-installer> 
+   <input-fields>
+      <data-value name="BEAHOME" value="/u01/app/obia11g/product/11.1.1/mwhome_1" />
+      <data-value name="WLS_INSTALL_DIR" value="/u01/app/obia11g/product/11.1.1/mwhome_1/wlserver_10.3" />
+      <data-value name="OCP_INSTALL_DIR" value="/u01/app/obia11g/product/11.1.1/mwhome_1/coherence_3.7" />
+      <data-value name="NODEMGR_PORT" value="5556" />
+      <data-value name="LOCAL_JVMS" value="/u01/app/obia11g/java/jdk"/>
+   </input-fields>
+</bea-installer>

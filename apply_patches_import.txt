@@ -1,0 +1,22 @@
+# Required JAVA_HOME - Java home
+JAVA_HOME=/u01/app/obia11g/product/11.1.1/mwhome_1/Oracle_BI1/jdk
+# Required INVENTORY_LOC - Inventory Location
+INVENTORY_LOC=/u01/app/oraInventory
+ORACLE_HOME=/u01/app/obia11g/product/11.1.1/mwhome_1/Oracle_BI1
+MW_HOME=/u01/app/obia11g/product/11.1.1/mwhome_1
+COMMON_ORACLE_HOME=/u01/app/obia11g/product/11.1.1/mwhome_1/oracle_common
+WL_HOME=/u01/app/obia11g/product/11.1.1/mwhome_1/wlserver_10.3
+SOA_HOME=
+ODI_HOME=/u01/app/obia11g/product/11.1.1/mwhome_1/Oracle_ODI1
+SKIP_BITECH_PATCHES=false
+# Optionally Required WINDOWS_UNZIP_TOOL_EXE - If platform is windows, then specify unzip tool exe with complete path
+# Currently only two tools : Winzip command line and 7-Zip command line are supported tools. 
+# Eg for Winzip tool - c:{PathSep}Program Files{PathSep}WinZip{PathSep}wzunzip.exe
+# Eg for 7-Zip tool - c:{PathSep}Program Files{PathSep}7-Zip{PathSep}7z.exe
+WINDOWS_UNZIP_TOOL_EXE=
+# Required WORKDIR - An existing writable directory to create logs and temp patch files
+WORKDIR=/u01/app/obia11g/tmp/biainst/work
+# Required PATCH_ROOT_DIR - Path of patch directory till the release patch-set folder which is inside patches4fa/dist.
+# i;e the patch-set folder for a particular release to apply patch from 
+# eg; /scratch/aime/tmp/ps1/biappsshiphome/patches4fa/dist/ps6rc3
+PATCH_ROOT_DIR=/u01/app/obia11g/tmp/biainst

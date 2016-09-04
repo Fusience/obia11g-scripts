@@ -1,0 +1,38 @@
+#
+# Script Name: installOBIEERCU.sh
+# Author: Gregory Artinoff
+# Description: Silently installs OBIEE RCU.  Assumes DB is already setup and is Oracle
+#
+ORACLE_BASE=/u01/app/obia11g
+RCU_INSTALL_POINT=/u01/sw/rcu
+RCU_INSTALLER_FILE=V75907-01.zip
+RCU_PASSWORD_FILE_DIRECTORY=/u01/sw/scripts
+RCU_PASSWORD_FILE=rcuPasswordFileOBIEE.txt
+MW_HOME=$ORACLE_BASE/product/11.1.1/mwhome_1
+WL_HOME=$MW_HOME/wlserver_10.3
+TARGET_DIRECTORY=$MW_HOME/rcu
+RCU_LOG_LOCATION=$ORACLE_BASE/logs/rcu
+RCU_LOG_NAME=rcu_biee.log
+RCU_LOG_LEVEL=ERROR
+SCHEMA_PREFIX=FMW
+DB_CONNECT_STRING='192.168.186.6:1521:obaw'
+DB_USER=SYS
+export ORACLE_BASE RCU_LOG_LOCATION RCU_LOG_NAME RCU_LOG_LEVEL RCU_PASSWORD_FILE
+
+if [ ! -d $RCU_LOG_LOCATION ]; then
+   mkdir -p $RCU_LOG_LOCATION;
+   chmod 770 -R $RCU_LOG_LOCATION;
+fi;
+
+if [ -d $TARGET_DIRECTORY ]; then
+   rm -rf $TARGET_DIRECTORY;
+fi;
+
+mkdir -p $TARGET_DIRECTORY
+chmod 770 -R $TARGET_DIRECTORY
+
+unzip -q $RCU_INSTALL_POINT/$RCU_INSTALLER_FILE -d $TARGET_DIRECTORY
+rm -f $TARGET_DIRECTORY/readme.html
+mv $TARGET_DIRECTORY/rcuHome $TARGET_DIRECTORY/biee
+
+$TARGET_DIRECTORY/biee/bin/rcu -silent -createRepository -databaseType ORACLE -connectString $DB_CONNECT_STRING -dbUser $DB_USER -dbRole SYSDBA -variables RCU_LOG_LOCATION=$RCU_LOG_LOCATION,RCU_LOG_NAME=$RCU_LOG_NAME -schemaPrefix $SCHEMA_PREFIX -component MDS -component BIPLATFORM -f < $RCU_PASSWORD_FILE_DIRECTORY/$RCU_PASSWORD_FILE 
